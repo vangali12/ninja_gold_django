@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NinjaGold</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'ninjaGold_app/css/indexStyle.css' %}">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="totalBox">
+			<h2>Your current total is: {{ request.session.curTotal }}</h2>
+			
+		</div>
+		<div class="place">
+			<h2>Farm</h2>
+			<h3>(earns 10-20 golds)</h3>
+			<form action='/process_money' method='post'>
+			{% csrf_token %}
+				<input type="hidden" name="building" value="farm" />
+				<input type="submit" value="Find Gold!">
+			</form>
+		</div>
+		<div class="place">
+			<h2>Cave</h2>
+			<h3>(earns 5-10 golds)</h3>
+			<form action='/process_money' method='post'>
+			{% csrf_token %}
+				<input type="hidden" name="building" value="cave" />
+				<input type="submit" value="Find Gold!">
+			</form>
+		</div>
+		<div class="place">
+			<h2>House</h2>
+			<h3>(earns 2-5 golds)</h3>
+			<form action='/process_money' method='post'>
+			{% csrf_token %}
+				<input type="hidden" name="building" value="house" />
+				<input type="submit" value="Find Gold!">
+			</form>
+		</div>
+		<div class="place">
+			<h2>Casino</h2>
+			<h3>(earns/takes 0-50 golds)</h3>
+			<form action='/process_money' method='post'>
+			{% csrf_token %}
+				<input type="hidden" name="building" value="casino" />
+				<input type="submit" value="Find Gold!">
+			</form>
+		</div>
+		<div class="actions">
+			<h2>Actions:</h2>
+			{% for i in request.session.arr %}
+				{% if i.curGold > 0 %}
+					<p style='color: green;'>Earned {{ i.curGold }} golds from the {{ i.location }} ({{ i.date }} {{ i.time }})</p>
+				{% else %}
+					<p style='color: red;'>Entered a {{ i.location }} and lost {{ i.curGold }} golds...Ouch ({{ i.date }} {{ i.time }})</p>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div></div>
+	</div>
+</body>
+</html>
