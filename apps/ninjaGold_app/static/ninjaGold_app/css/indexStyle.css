@@ -2,13 +2,12 @@
 	text-align: center;
 	box-sizing: border-box;	
 	vertical-align: top;
-	border: 1px dotted red;
 }
 
 .wrapper {
 	width: 1200px;
 	text-align: center;
-	border: 1px solid darkgreen;
+	border: 1px solid dimgrey;
 }
 
 .totalBox {
@@ -20,6 +19,7 @@
 	display: inline-block;
 	width: 23%;
 	margin: 5px;
+	border: 2px solid darkgrey;
 }
 
 .actions {
